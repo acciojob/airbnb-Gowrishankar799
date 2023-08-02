@@ -67,8 +67,9 @@ public class Repo {
             booking.setBookingId(ss);
             booking.setAmountToBePaid(amount);
             bookinghashMap.put(ss,booking);
-            return amout;
+            return amount;
         }
+        return -1;
 
     }
     public int getBookings(int a){

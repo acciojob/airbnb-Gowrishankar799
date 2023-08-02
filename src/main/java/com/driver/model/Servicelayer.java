@@ -24,9 +24,9 @@ public class Servicelayer {
 
     }
     public int getBookings(int a){
-        retun repo.getBookings(a);
+        return repo.getBookings(a);
     }
-    public Hotel updateFacilities(List<Facility>)face, String hotel){
+    public Hotel updateFacilities(List<Facility>face, String hotel){
     return repo.updateFacilities(face,hotel);
     }
 
