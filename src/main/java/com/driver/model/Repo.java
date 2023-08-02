@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
-@Repository
-@RestController
-@RequestMapping("/hotel")
+
 public class Repo {
     HashMap<String,Hotel> hotel = new HashMap<>();
     HashMap<Integer,User> user = new HashMap<>();
