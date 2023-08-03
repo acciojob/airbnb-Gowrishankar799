@@ -1,14 +1,10 @@
 package com.driver.model;
 
-import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.util.*;
 
 
 public class Repo {
-    HashMap<String,Hotel> hotel = new HashMap<>();
+    HashMap<String,Hotel> hote = new HashMap<>();
     HashMap<Integer,User> user = new HashMap<>();
     HashMap<String,Booking> bookinghashMap = new HashMap<>();
     public String addHotel(Hotel hot) {
@@ -24,9 +20,9 @@ public class Repo {
         hotel.put(hot.getHotelName(),hot);
         return "SUCCESS";*/
       if (hot.getHotelName() == null)return "FAILURE";
-        if (hotel.containsKey(hot.getHotelName()))return "FAILURE";
+        if (hote.containsKey(hot.getHotelName()))return "FAILURE";
         String hotelName = hot.getHotelName();
-        hotel.put(hotelName, hot);
+        hote.put(hotelName, hot);
         return "SUCCESS";
     }
 
@@ -37,7 +33,7 @@ public class Repo {
     }
     public String getHotelWithMostFacilities(){
         int max = Integer.MAX_VALUE;
-        for(Hotel h : hotel.values()){
+        for(Hotel h : hote.values()){
             List<Facility> list = h.getFacilities();
             if(max>list.size()){
                 max = list.size();
@@ -45,7 +41,7 @@ public class Repo {
         }
         List<String>al = new ArrayList<>();
         if(max == 0) return "";
-        for(Hotel h : hotel.values()){
+        for(Hotel h : hote.values()){
             List<Facility>list = h.getFacilities();
             if(list.size() == max)
                 al.add(h.getHotelName());
@@ -54,15 +50,15 @@ public class Repo {
         return al.get(0);
     }
     public int bookARoom(Booking booking){
-        if(!hotel.containsKey(booking.getHotelName())){
+        if(!hote.containsKey(booking.getHotelName())){
             return -1;
         }
-        Hotel h = hotel.get(booking.getHotelName());
+        Hotel h = hote.get(booking.getHotelName());
         if(h.getAvailableRooms()>=booking.getNoOfRooms()){
             int remainingrooms = h.getAvailableRooms()-booking.getNoOfRooms();
             h.setAvailableRooms(remainingrooms);
             String name = h.getHotelName();
-            hotel.put(name,h);
+            hote.put(name,h);
             String ss = UUID.randomUUID()+"";
             int amount = booking.getNoOfRooms()*h.getPricePerNight();
             booking.setBookingId(ss);
@@ -82,8 +78,8 @@ public class Repo {
         }
         return count;
     }
-    public Hotel updateFacilities(List<Facility>list,String h){
-        if(!hotel.containsKey(h)){
+    public Hotel updateFacilities(List<Facility>newFacilities,String hotelName){
+       /* if(!hotel.containsKey(h)){
             return null;
         }
         Hotel hot = hotel.get(h);
@@ -97,6 +93,28 @@ public class Repo {
         // String s = hot.getHotelName();
         hotel.put(h,hot);
         return hot;
-    }
+    }*/
+        if(!hote.containsKey(hotelName))return null;
 
+        Hotel hotel = hote.get(hotelName);
+
+        List<Facility> list = hotel.getFacilities();
+
+        for(int i=0;i<newFacilities.size();i++){
+
+            if(!list.contains(newFacilities.get(i))){
+
+                list.add(newFacilities.get(i));
+            }
+
+        }
+
+        hotel.setFacilities(list);
+
+        hote.put(hotelName,hotel);
+
+        return  hotel;
+
+
+    }
 }
