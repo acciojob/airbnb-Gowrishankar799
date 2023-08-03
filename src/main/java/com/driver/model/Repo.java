@@ -11,8 +11,8 @@ public class Repo {
     HashMap<String,Hotel> hotel = new HashMap<>();
     HashMap<Integer,User> user = new HashMap<>();
     HashMap<String,Booking> bookinghashMap = new HashMap<>();
-    public String addHotel(Hotel hot){
-        if(hot.getHotelName().equals("null")){
+    public String addHotel(Hotel hot) {
+       if(hot.getHotelName() == null){
             return "FAILURE";
         }
         if(hot == null) return "FAILURE";
@@ -23,6 +23,12 @@ public class Repo {
         }
         hotel.put(hot.getHotelName(),hot);
         return "SUCCESS";
+      /*  if (hotel.getHotelName() == null)return "FAILURE";
+        if (hotelHashMap.containsKey(hotel.getHotelName()))return "FAILURE";
+        String hotelName = hotel.getHotelName();
+        hotelHashMap.put(hotelName, hotel);
+        return "SUCCESS";
+    }*/
     }
     public Integer addUser(User us){
         for(User u : user.values()){
