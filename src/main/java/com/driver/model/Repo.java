@@ -23,10 +23,10 @@ public class Repo {
         }
         hotel.put(hot.getHotelName(),hot);
         return "SUCCESS";*/
-      / if (hot.getHotelName() == null)return "FAILURE";
+      if (hot.getHotelName() == null)return "FAILURE";
         if (hotel.containsKey(hot.getHotelName()))return "FAILURE";
         String hotelName = hot.getHotelName();
-        hotel.put(hotelName, hotel);
+        hotel.put(hotelName, hot);
         return "SUCCESS";
     }
 
