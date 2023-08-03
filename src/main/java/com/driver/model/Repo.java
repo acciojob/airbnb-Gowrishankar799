@@ -94,8 +94,8 @@ public class Repo {
             }
         }
         hot.setFacilities(al);
-        String s = hot.getHotelName();
-        hotel.put(s,hot);
+        // String s = hot.getHotelName();
+        hotel.put(h,hot);
         return hot;
     }
 
