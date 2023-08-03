@@ -32,12 +32,10 @@ public class Repo {
         return us.getaadharCardNo();
     }
     public String getHotelWithMostFacilities(){
-        int max = Integer.MAX_VALUE;
+        int max = 0;
         for(Hotel h : hote.values()){
             List<Facility> list = h.getFacilities();
-            if(max>list.size()){
-                max = list.size();
-            }
+            max = Math.max(max,list.size());
         }
         List<String>al = new ArrayList<>();
         if(max == 0) return "";
@@ -48,6 +46,20 @@ public class Repo {
         }
         Collections.sort(al);
         return al.get(0);
+       /* int maxFacility = 0;
+        for (String key : hotelHashMap.keySet()) {
+            List<Facility> facilities = hotelHashMap.get(key).getFacilities();
+            maxFacility = Math.max(maxFacility, facilities.size());
+        }
+
+        if (maxFacility == 0) return "";
+        List<String> hotelNames = new ArrayList<>();
+        for (String key : hotelHashMap.keySet()) {
+            List<Facility> facilities = hotelHashMap.get(key).getFacilities();
+            if (facilities.size() == maxFacility) hotelNames.add(key);
+        }
+        Collections.sort(hotelNames);
+        return hotelNames.get(0);*/
     }
     public int bookARoom(Booking booking){
         if(!hote.containsKey(booking.getHotelName())){
