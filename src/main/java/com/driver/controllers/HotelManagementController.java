@@ -18,8 +18,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/hotel")
 public class HotelManagementController {
-    @Autowired
-    Servicelayer ser;
+    //@Autowired
+    Servicelayer ser = new Servicelayer();
 
     @PostMapping("/add-hotel")
     public String addHotel(@RequestBody Hotel hotel){

@@ -7,8 +7,8 @@ import java.util.List;
 
 @Service
 public class Servicelayer {
-    @Autowired
-    Repo repo;
+   // @Autowired
+    Repo repo = new Repo();
     public String addHotel(Hotel hotel){
         return repo.addHotel(hotel);
 
